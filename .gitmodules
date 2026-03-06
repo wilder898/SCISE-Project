@@ -1,0 +1,6 @@
+[submodule "SCISE-Backend"]
+	path = SCISE-Backend
+	url = https://github.com/wilder898/SCISE-Backend.git
+[submodule "SCISE-Frontend"]
+	path = SCISE-Frontend
+	url = https://github.com/wilder898/SCISE-Frontend.git
