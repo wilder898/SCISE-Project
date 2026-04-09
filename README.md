@@ -137,7 +137,7 @@ El usuario administrador inicial se crea con los datos configurados en el `.env`
 
 Valores de prueba sugeridos:
 - Correo: `admin@scise.sena.edu.co`
-- Contrasena: `CambiarEstoInmediatamente123!`
+- Contrasena: `Admin123*`
 
 ## 8. Tecnologias esenciales usadas
 
@@ -162,51 +162,8 @@ Se uso porque facilita exponer una API clara, validada y mantenible, separando r
 
 Se eligio porque el proyecto trabaja con relaciones claras entre usuarios, roles, estudiantes, equipos, movimientos y auditoria.
 
-## 9. Pruebas funcionales recomendadas
 
-### Prueba 1 - Inicio de sesion
-1. Abrir `http://localhost:4321/auth/login`
-2. Iniciar sesion con el administrador
-3. Verificar acceso a dashboard, reportes, usuarios y configuracion
-
-### Prueba 2 - Crear estudiante
-1. Ir a `Gestionar Usuarios`
-2. Abrir `Nuevo Usuario`
-3. Registrar un estudiante con documento, carnet, correo y telefono
-4. Confirmar que aparezca en la tabla
-
-### Prueba 3 - Registrar equipo
-1. En `Gestionar Usuarios`, abrir `Registrar Equipo`
-2. Identificar al estudiante por documento o carnet
-3. Registrar un equipo nuevo
-4. Confirmar que aparezca en la tabla de equipos
-
-### Prueba 4 - Registrar ingreso
-1. Ir a `Registrar Ingreso`
-2. Buscar estudiante por documento o usar camara
-3. Seleccionar un equipo asociado
-4. Registrar el ingreso
-5. Confirmar que el movimiento quede visible en dashboard y reportes
-
-### Prueba 5 - Registrar salida
-1. Ir a `Registrar Salida`
-2. Buscar el mismo estudiante
-3. Verificar que aparezcan solo equipos con ingreso activo
-4. Registrar la salida
-5. Confirmar el movimiento en historial
-
-### Prueba 6 - Reportes
-1. Entrar a `Panel de Administracion`
-2. Filtrar por tipo y rango de fechas
-3. Revisar historial
-4. Exportar CSV o XLSX
-
-### Prueba 7 - Configuracion
-1. Entrar a `Configuracion`
-2. Verificar gestion de usuarios del sistema
-3. Verificar auditoria de accesos
-
-## 10. Notas importantes
+## 9. Notas importantes
 
 - Para probar la camara, usar `localhost` y conceder permisos en el navegador.
 - El frontend usa `PUBLIC_API_BASE_URL`, por defecto `http://localhost:8000/api/v1`.
