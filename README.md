@@ -1,11 +1,11 @@
-﻿# SCISE
+# SCISE
 
-SCISE es una plataforma web para el control de ingreso y salida de equipos. El proyecto esta dividido en dos aplicaciones:
+SCISE es una plataforma web para el control de ingreso y salida de equipos. El repositorio esta dividido en dos aplicaciones:
 
 - `SCISE-Backend`: API REST construida con FastAPI
 - `SCISE-Frontend`: interfaz web construida con Astro
 
-Este README esta pensado para que cualquiera pueda levantar el proyecto, preparar la base de datos y ejecutar pruebas funcionales basicas.
+Este README esta pensado para que un docente o evaluador pueda levantar el proyecto, preparar la base de datos y ejecutar pruebas funcionales basicas.
 
 ## 1. Requisitos
 
@@ -20,7 +20,7 @@ Este README esta pensado para que cualquiera pueda levantar el proyecto, prepara
 
 ## 2. Estructura del proyecto
 
-```
+```text
 SCISE-Project/
   README.md
   .env.backend.example
@@ -36,6 +36,17 @@ SCISE-Project/
 ### Backend
 1. Copiar `.env.backend.example` dentro de `SCISE-Backend/` con el nombre `.env`
 2. Ajustar valores reales de PostgreSQL y del usuario administrador inicial
+
+Cadena de conexion actual de la base de datos del proyecto:
+
+```env
+DATABASE_URL=postgresql://neondb_owner:npg_l9KBV2MTgPjQ@ep-green-waterfall-adkwuw2c-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
+```
+
+Notas:
+- esta base corresponde a Neon PostgreSQL
+- requiere conexion SSL
+- si se usa esta conexion, debe colocarse en el archivo `.env` del backend
 
 ### Frontend
 1. Copiar `.env.frontend.example` dentro de `SCISE-Frontend/` con el nombre `.env`
@@ -77,7 +88,7 @@ Si no se desea correr Alembic, se puede ejecutar el archivo:
 
 - `database/scise_init.sql`
 
-El script incluye tambien:
+El script incluye:
 
 - estructura base de tablas
 - indices
@@ -124,9 +135,9 @@ Ruta local:
 
 El usuario administrador inicial se crea con los datos configurados en el `.env` del backend.
 
-Valores deprueba:
+Valores de prueba sugeridos:
 - Correo: `admin@scise.sena.edu.co`
-- Contrasena: `Admin123*`
+- Contrasena: `CambiarEstoInmediatamente123!`
 
 ## 8. Tecnologias esenciales usadas
 
@@ -150,6 +161,50 @@ Se uso porque facilita exponer una API clara, validada y mantenible, separando r
 - PostgreSQL
 
 Se eligio porque el proyecto trabaja con relaciones claras entre usuarios, roles, estudiantes, equipos, movimientos y auditoria.
+
+## 9. Pruebas funcionales recomendadas
+
+### Prueba 1 - Inicio de sesion
+1. Abrir `http://localhost:4321/auth/login`
+2. Iniciar sesion con el administrador
+3. Verificar acceso a dashboard, reportes, usuarios y configuracion
+
+### Prueba 2 - Crear estudiante
+1. Ir a `Gestionar Usuarios`
+2. Abrir `Nuevo Usuario`
+3. Registrar un estudiante con documento, carnet, correo y telefono
+4. Confirmar que aparezca en la tabla
+
+### Prueba 3 - Registrar equipo
+1. En `Gestionar Usuarios`, abrir `Registrar Equipo`
+2. Identificar al estudiante por documento o carnet
+3. Registrar un equipo nuevo
+4. Confirmar que aparezca en la tabla de equipos
+
+### Prueba 4 - Registrar ingreso
+1. Ir a `Registrar Ingreso`
+2. Buscar estudiante por documento o usar camara
+3. Seleccionar un equipo asociado
+4. Registrar el ingreso
+5. Confirmar que el movimiento quede visible en dashboard y reportes
+
+### Prueba 5 - Registrar salida
+1. Ir a `Registrar Salida`
+2. Buscar el mismo estudiante
+3. Verificar que aparezcan solo equipos con ingreso activo
+4. Registrar la salida
+5. Confirmar el movimiento en historial
+
+### Prueba 6 - Reportes
+1. Entrar a `Panel de Administracion`
+2. Filtrar por tipo y rango de fechas
+3. Revisar historial
+4. Exportar CSV o XLSX
+
+### Prueba 7 - Configuracion
+1. Entrar a `Configuracion`
+2. Verificar gestion de usuarios del sistema
+3. Verificar auditoria de accesos
 
 ## 10. Notas importantes
 
